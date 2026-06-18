@@ -1,0 +1,9 @@
+﻿using System;
+
+public enum EnumResetUnprotectedChunksGroupingMode
+{
+	Disabled,
+	NoGrouping,
+	SeparatePOIs,
+	GroupedPOIs
+}

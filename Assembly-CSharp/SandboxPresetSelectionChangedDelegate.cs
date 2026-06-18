@@ -1,0 +1,3 @@
+﻿using System;
+
+public delegate void SandboxPresetSelectionChangedDelegate(SandboxPresetInfo _oldPreset, SandboxPresetInfo _newPreset);

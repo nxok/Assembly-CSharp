@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine.Scripting;
+
+namespace GameEvent.SequenceActions
+{
+	[Preserve]
+	public class ActionBlockPickup : ActionBaseBlockAction
+	{
+		[PublicizedFrom(EAccessModifier.Protected)]
+		public override BlockChangeInfo UpdateBlock(World world, Vector3i currentPos, BlockValue blockValue)
+		{
+			if (!blockValue.isair)
+			{
+				return new BlockChangeInfo(currentPos, blockValue, true);
+			}
+			return null;
+		}
+
+		[PublicizedFrom(EAccessModifier.Protected)]
+		public override void ProcessChanges(World world, List<BlockChangeInfo> blockChanges)
+		{
+			for (int i = 0; i < blockChanges.Count; i++)
+			{
+				BlockChangeInfo blockChangeInfo = blockChanges[i];
+				blockChangeInfo.blockValue.Block.PickupOrDrop(world, blockChangeInfo.blockValueRef, blockChangeInfo.blockValue, base.Owner.Target as EntityPlayer, true);
+			}
+		}
+
+		[PublicizedFrom(EAccessModifier.Protected)]
+		public override BaseAction CloneChildSettings()
+		{
+			return new ActionBlockPickup();
+		}
+	}
+}

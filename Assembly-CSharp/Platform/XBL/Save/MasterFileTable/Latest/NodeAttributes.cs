@@ -1,0 +1,11 @@
+﻿using System;
+
+namespace Platform.XBL.Save.MasterFileTable.Latest
+{
+	[Flags]
+	public enum NodeAttributes : uint
+	{
+		None = 0U,
+		Directory = 1U
+	}
+}
